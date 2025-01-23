@@ -1,3 +1,5 @@
+package app.decide;
+
 public class Decide {
     // Type definitions 
     public class Parameters {
