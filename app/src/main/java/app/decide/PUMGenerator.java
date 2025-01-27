@@ -41,15 +41,10 @@ public class PUMGenerator {
      * @return The boolean result of the logical operation.
      */
     private static boolean findValue(boolean i, boolean j, CONNECTORS op) {
-        switch (op) {
-            case ANDD:
-                return i && j; 
-            case ORR:
-                return i || j; 
-            case NOTUSED:
-                return true;
-            default:
-                throw new IllegalArgumentException("Unknown connector type: " + op);
-        }
+        return switch (op) {
+            case ANDD -> i && j;
+            case ORR -> i || j;
+            case NOTUSED -> true;
+        };
     }
 }
