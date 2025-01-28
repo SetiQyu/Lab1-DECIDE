@@ -44,35 +44,43 @@ class FuvTest {
         }
 
     }
+    // If all elements in PUV and PUM are false then all FUV elements should be true 
     @Test void testFalsePumFalsePuv() { 
         boolean[] expect = new boolean[15];
         java.util.Arrays.fill(expect, true);
         assertArrayEquals(expect, Fuv.getFUV(false_pum, false_puv, test_dimension),
                 "All false PUV all false PUM gives all true FUV?");
-    }
+    } 
+    // If all elements in PUV are true and all elements in PUM are false 
+    // then all FUV elements should be false 
     @Test void testFalsePumTruePuv(){
         boolean[] expect = new boolean[15];
         java.util.Arrays.fill(expect, false);
         assertArrayEquals(expect, Fuv.getFUV(false_pum, true_puv, test_dimension),
                 "All true PUV and all false PUM gives all false FUV?");
     }
+    // If all elements in PUV are false and all PUM elements true then 
+    // all FUV elements should be true
     @Test void testTruePumFalsePuv(){
         boolean[] expect = new boolean[15];
         java.util.Arrays.fill(expect, true);
         assertArrayEquals(expect, Fuv.getFUV(true_pum, false_puv, test_dimension),
                 "All false PUV and all true PUM gives all true FUV?");
     }
+
+    // If all elements in PUV are false then 
+    // all FUV elements should be true given arbitrary PUM contents  
     @Test void testMixedPumFalsePuv(){
         boolean[] expect = new boolean[15];
         java.util.Arrays.fill(expect, true);
-
         assertArrayEquals(expect, Fuv.getFUV(mixed_pum, false_puv, test_dimension),
                 "All false PUV and random PUM gives all true FUV?");
     }
+    // If all elements in PUM are true then 
+    // all FUV elements should be true given arbitrary PUV contents  
     @Test void testTruePumMixedPuv(){
         boolean[] expect = new boolean[15];
         java.util.Arrays.fill(expect, true);
-
         assertArrayEquals(expect, Fuv.getFUV(true_pum, mixed_puv, test_dimension),
                 "Random PUV and all true PUM gives all true FUV?");
     }

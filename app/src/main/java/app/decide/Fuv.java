@@ -2,6 +2,14 @@ package app.decide;
 
 public class Fuv {
     
+    /** 
+    * Generates Final Unlocking Vector (FUV)
+    *
+    * @param PUM 15x15 boolean matrix
+    * @param PUV 15 element long boolean array
+    * @param dimension an integer that should be 15
+    * @return FUV 15 element long boolean array
+    */
     public static boolean[] getFUV(boolean[][] PUM, boolean[] PUV, int dimension){
         
         boolean[] FUV = new boolean[dimension];
