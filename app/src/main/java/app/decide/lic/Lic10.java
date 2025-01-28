@@ -19,7 +19,7 @@ public class Lic10 implements ILic{
         for(int i = 0; i < num_points; i++){
             E_index = (i + parameters.E_PTS + 1) % num_points;
             F_index = (E_index + parameters.F_PTS + 1) % num_points;
-            area = calcArea(new double[]{x[i], y[i]},new double[] {x[E_index], y[E_index]}, new double[] {x[F_index], y[F_index]});
+            area = calcArea(x[i], y[i], x[E_index], y[E_index], x[F_index], y[F_index]);
             if(area > parameters.AREA1){
                 return true;
             }
@@ -27,17 +27,20 @@ public class Lic10 implements ILic{
         return false;
     }
     /**
-     * Calculates the Area of the triangle formed by the points A, B and C.
-     * @param A First point (x_1, y_1)
-     * @param B Second point (x_2, y_2)
-     * @param C Third point (x_3, y_3)
+     * Calculates the Area of the triangle formed by the points (ax, ay), (bx, by) and (cx, cy).
+     * @param ax - First x-coordinate x_1. 
+     * @param ay - First y-coordinate y_1.
+     * @param bx - Second x-coordinate x_2.
+     * @param by - Second y-coordinate y_2.
+     * @param cx - Third x-coordinate x_3.
+     * @param cy - Third y-coordinate y_3.
      * @return The area of the triangle.
      */
-    public double calcArea(double[] A, double[] B, double[] C){
+    public double calcArea(double ax, double ay, double bx, double by, double cx, double cy){
         return (0.5)*(Math.abs(
-            A[0]*(B[1] - C[1]) + 
-            B[0]*(C[1] - A[1]) + 
-            C[0]*(A[1] - B[1]))
+            ax*(by - cy) + 
+            bx*(cy - ay) + 
+            cx*(ay - by))
             ); // Based on the formula (1/2)*|x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2)|
     }
     

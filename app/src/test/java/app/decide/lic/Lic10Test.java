@@ -1,5 +1,7 @@
-package app.decide;
+package app.decide.lic;
 
+
+import app.decide.Decide;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,11 +26,14 @@ public class Lic10Test {
     @Test
     public void test_triangle_calculation(){
         // Test data points on line y = x
-        double[] A = {1.0, 1.0};
-        double[] B = {3.0, 3.0};
-        double[] C = {5.0, 5.0};
+        double ax = 1.0; 
+        double ay = 1.0;
+        double bx = 3.0; 
+        double by = 3.0;
+        double cx = 5.0; 
+        double cy = 5.0;
         // The area should be 0 as the points are on the same line.
-        assertEquals(Decide.COMPTYPE.EQ, Decide.DOUBLECOMPARE(0.0, test_Lic10.calcArea(A, B, C)));
+        assertEquals(Decide.COMPTYPE.EQ, Decide.DOUBLECOMPARE(0.0, test_Lic10.calcArea(ax, ay, bx, by, cx, cy)));
     }
 
     /**
@@ -52,17 +57,14 @@ public class Lic10Test {
      */
     @Test
     public void test_invalid_input(){
-        boolean thrown_exception = false;
+        // Local variables
         double[] p1 = {0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0};
         int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0};
         Parameters parameters = decide.new Parameters(p1, p2);
         double[] x = {1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0}; // x is shorter than y.
         double[] y = {1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0};
-        try{
-            test_Lic10.condition(x, y, x.length, parameters);
-        }catch(IllegalArgumentException e){
-            thrown_exception = true;
-        }
-        assertTrue(thrown_exception);
+
+        assertThrows(IllegalArgumentException.class, () -> test_Lic10.condition(x, y, x.length, parameters));
+        
     }
 }
