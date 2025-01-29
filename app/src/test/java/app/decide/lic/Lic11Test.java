@@ -1,5 +1,6 @@
-package app.decide;
+package app.decide.lic;
 
+import app.decide.Decide;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,7 +44,7 @@ public class Lic11Test {
         double[] x = {3.0, 0.0, 3.0, 0.0, 3.0, 0.0, 3.0}; // No pair upholds the condition x[j] - x[i] < 0. 
         double[] y = {0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 3.0}; // Also not relevant for the LIC.
 
-        assertTrue(!test_Lic11.condition(x, y, x.length, parameters));
+        assertFalse(test_Lic11.condition(x, y, x.length, parameters));
     }
 
     /**
@@ -57,12 +58,9 @@ public class Lic11Test {
         Parameters parameters = decide.new Parameters(p1, p2);
         double[] x = {1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0}; 
         double[] y = {1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0}; // y is shorter than x
-        try{
-            test_Lic11.condition(x, y, x.length, parameters);
-        }catch(IllegalArgumentException e){
-            thrown_exception = true;
-        }
-        assertTrue(thrown_exception);
+        
+        assertThrows(IllegalArgumentException.class, () -> test_Lic11.condition(x, y, x.length, parameters));
+        
     }
 }
 
