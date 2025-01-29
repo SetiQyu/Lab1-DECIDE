@@ -30,10 +30,10 @@ public class Lic10Test {
         double by = 3.0;
         double cx = 5.0; 
         double cy = 5.0;
-
         double delta = 0.000001;
         // The area should be 0 as the points are on the same line.
         assertEquals(0.0, test_Lic10.calcArea(ax, ay, bx, by, cx, cy), delta);
+
     }
 
     /**
