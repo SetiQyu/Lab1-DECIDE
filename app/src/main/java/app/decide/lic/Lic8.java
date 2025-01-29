@@ -64,9 +64,13 @@ public class Lic8 implements ILic{
 
     @Override
     public boolean condition(double[] x, double[] y, int num_points, Decide.Parameters parameters) {
-        if(num_points < 5) {
+        if(1 > parameters.A_PTS || 1 > parameters.B_PTS || parameters.A_PTS + parameters.B_PTS > num_points - 3) {
             return false;
         }
+        if(x.length != y.length || num_points != y.length){
+            throw new IllegalArgumentException("The length of the inputs do not match");
+        }
+
         for(int i = 0; i < num_points - parameters.A_PTS - parameters.B_PTS - 2; i++) {
             double x1 = x[i];
             double y1 = y[i];
