@@ -1,5 +1,7 @@
 package app.decide.lic;
+
 import app.decide.Decide.*;
+import static java.awt.geom.Point2D.distance; // 
 
 public class Lic12 implements ILic{
     @Override
@@ -19,10 +21,10 @@ public class Lic12 implements ILic{
         // Check if condition for LIC12 is met
         for(int i = 0; i <= max_index; i++){
             compare_index = i + parameters.K_PTS + 1;
-            if(euclidian_distance(new double[] {x[i], y[i]}, new double[] {x[compare_index], y[compare_index]}) > parameters.LENGTH1){
+            if(distance(x[i], y[i], x[compare_index], y[compare_index]) > parameters.LENGTH1){
                 l1_found = true;
             }
-            if(euclidian_distance(new double[] {x[i], y[i]}, new double[] {x[compare_index], y[compare_index]}) < parameters.LENGTH2){
+            if(distance(x[i], y[i], x[compare_index], y[compare_index]) < parameters.LENGTH2){
                 l2_found = true; 
             }
             if(l1_found && l2_found) return true;
@@ -30,10 +32,4 @@ public class Lic12 implements ILic{
         return false; 
     }
 
-    public double euclidian_distance(double[] p, double[] q){
-        return Math.sqrt(
-            Math.pow((p[0] - q[0]), 2) +
-            Math.pow((p[1] - q[1]), 2)
-        );
-    }
 }

@@ -1,5 +1,6 @@
-package app.decide;
+package app.decide.lic;
 
+import app.decide.Decide;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +20,7 @@ public class Lic12Test {
      * If there is only one pair that upholds the conditions for Lic12 it is found and the function returns true. 
      */
     @Test
-    public void same_pair_upholds_conditions(){
+    public void samePairUpholdsConditions(){
         double[] p1 = {1.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0};  // Length1 and length2 set to 1.0 and 4.0 respectively
         int[] p2 = {0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0}; // K_PTS set to 3
         Parameters parameters = decide.new Parameters(p1, p2);
@@ -36,7 +37,7 @@ public class Lic12Test {
      * If there is two different pairs that togheter uphold the condtions for Lic12 the function returns true.
      */
     @Test
-    public void different_pairs_uphold_conditions(){
+    public void differentPairsUpholdConditions(){
         double[] p1 = {3.0, 0.0, 0.0, 0.0, 0.0, 5.0, 0.0, 0.0};  // Length1 and length2 set to 3.0 and 5 respectively
         int[] p2 = {0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0}; // K_PTS set to 3
         Parameters parameters = decide.new Parameters(p1, p2);
@@ -52,7 +53,7 @@ public class Lic12Test {
      * If there is no pairs that uphold the conditons for Lic12 the function returns false. 
      */
     @Test
-    public void no_pairs(){
+    public void noPairsUpholdConditions(){
         double[] p1 = {3.0, 0.0, 0.0, 0.0, 0.0, 5.0, 0.0, 0.0};  // Length1 and length2 set to 3.0 and 5 respectively
         int[] p2 = {0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0}; // K_PTS set to 3
         Parameters parameters = decide.new Parameters(p1, p2);
@@ -60,6 +61,6 @@ public class Lic12Test {
         double[] x = {0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0}; 
         double[] y = {0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0}; 
 
-        assertTrue(!test_Lic12.condition(x, y, x.length, parameters));
+        assertFalse(test_Lic12.condition(x, y, x.length, parameters));
     }
 }
