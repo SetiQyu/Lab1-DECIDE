@@ -4,8 +4,8 @@ import app.decide.Decide;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
-import app.decide.lic.Lic12;
 import app.decide.Decide.Parameters;
+
 public class Lic12Test {
     private Lic12 test_Lic12;
     private Decide decide;
