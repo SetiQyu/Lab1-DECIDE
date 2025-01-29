@@ -14,22 +14,22 @@ public class Lic14 implements ILic {
         // Local variables
         boolean found_a1 = false;
         boolean found_a2 = false;
-        double[] A;
-        double[] B;
-        double[] C;  
+        double ax, ay;
+        double bx, by;
+        double cx, cy;  
         int e_index;
         int f_index;
         int max_index = num_points - parameters.E_PTS - parameters.F_PTS - 3;//  num_points - 1 -(E_PTS + 1 + F_pts + 1)
         for(int i = 0; i <= max_index; i++){
             e_index = i + parameters.E_PTS + 1;
             f_index = e_index + parameters.F_PTS + 1;
-            A = new double[] {x[i], y[i]};
-            B = new double[] {x[e_index], y[e_index]};
-            C = new double[] {x[f_index], y[f_index]};
-            if(!found_a1 && check_area(A, B, C, parameters.AREA1, true)){
+            ax = x[i]; ay = y[i];
+            bx = x[e_index]; by = y[e_index];
+            cx = x[f_index]; cy = y[f_index];
+            if(!found_a1 && checkArea(ax, ay, bx, by, cx, cy, parameters.AREA1, true)){
                 found_a1 = true;
             }
-            if(!found_a2 && check_area(A, B, C, parameters.AREA2, false)){
+            if(!found_a2 && checkArea(ax, ay, bx, by, cx, cy, parameters.AREA2, false)){
                 found_a2 = true; 
             }
             if(found_a1 && found_a2){
@@ -40,19 +40,22 @@ public class Lic14 implements ILic {
 
     }
     /** 
-     * Checks if the area formed by the triangle A-B-C greater than or less than(depending on the value of variable greater_than) the given parameter area.
-     * @param A First data point (x_1, y_1)
-     * @param B Second data point (x_2, y_2)
-     * @param C Third data point (x_3, y_3) 
+     * Checks if the area formed by the triangle (ax, ay)-(bx, by)-(cx, cy) is greater than or less than(depending on the value of variable greater_than) the given parameter area.
+     * @param ax - First x-coordinate x_1. 
+     * @param ay - First y-coordinate y_1.
+     * @param bx - Second x-coordinate x_2.
+     * @param by - Second y-coordinate y_2.
+     * @param cx - Third x-coordinate x_3.
+     * @param cy - Third y-coordinate y_3.
      * @param area The area to compare to.
      * @param greater_than True if the compare should be greater than.
      * @return The boolean result of the compare.
      */
-    public static boolean check_area(double[] A, double[] B, double[] C, double area, boolean greater_than){
+    public static boolean checkArea(double ax, double ay, double bx, double by, double cx, double cy, double area, boolean greater_than){
         double tri_area = (0.5)*(Math.abs(
-            A[0]*(B[1] - C[1]) + 
-            B[0]*(C[1] - A[1]) + 
-            C[0]*(A[1] - B[1]))
+            ax*(by - cy) + 
+            bx*(cy - ay) + 
+            cx*(ay - by))
             ); // Based on the formula (1/2)*|x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2)|
             if(greater_than){
                 return tri_area > area;
