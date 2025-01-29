@@ -21,6 +21,15 @@ class Lic8Test {
     }
 
     /**
+     * When num_points is not the same length, inputs are invalid
+     */
+    @Test void testInvalidLength() {
+        params.A_PTS = 1;
+        params.B_PTS= 1;
+        assertThrows(IllegalArgumentException.class, () -> new Lic8().condition(new double[2], new double[2], 5, params));
+    }
+
+    /**
      * There are two points of three points to check : (5, 5), (3, 2), (2, 4) and (3, 3), (6, 1), (2, 9)
      * the first one can be contained in radius 2, not the second one.
      */
