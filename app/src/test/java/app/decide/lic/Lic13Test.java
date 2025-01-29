@@ -1,10 +1,11 @@
-package app.decide;
+package app.decide.lic;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import app.decide.lic.Lic13;
 import app.decide.Decide.Parameters;
+
 public class Lic13Test {
 
     private Lic13 test_Lic13;
@@ -20,7 +21,7 @@ public class Lic13Test {
      * If there is one set of 3 points that form a triangle which circumradius is within the interval [RADIUS1, RADIUS2] the function returns true.  
      */
     @Test
-    public void valid_triangle_no_line(){
+    public void validTriangleNoLine(){
         double[] p1 = {0.0, 3.0, 0.0, 0.0, 0.0, 0.0, 7.0, 0.0};  // RADIUS1 and RADIUS2 set to 3.0 and 7.0 respectively
         int[] p2 = {0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0}; // A_PTS  and B_PTS set to 2
         Parameters parameters = decide.new Parameters(p1, p2);
@@ -39,7 +40,7 @@ public class Lic13Test {
      * If there is no set of 3 points that either form a line or a triangle the function returns false.  
     */
     @Test
-    public void no_triangle_no_line(){
+    public void noTriangleNoLine(){
         double[] p1 = {0.0, 3.0, 0.0, 0.0, 0.0, 0.0, 7.0, 0.0};  // RADIUS1 and RADIUS2 set to 3.0 and 7.0 respectively
         int[] p2 = {0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0}; // A_PTS  and B_PTS set to 2
         Parameters parameters = decide.new Parameters(p1, p2);
@@ -50,14 +51,14 @@ public class Lic13Test {
 
 
         // Check if Lic13 returns false if there exists no triangle or line that upholds the condition.
-        assertTrue(!test_Lic13.condition(x, y, x.length, parameters));
+        assertFalse(test_Lic13.condition(x, y, x.length, parameters));
     }
     
     /** 
      * If there is 3 points that uphold the conditions for spacing that form a line where the greatest distance is within the interval [RADIUS1, RADIUS2] the function returns true
      */
     @Test
-    public void no_triangle_valid_line(){
+    public void noTriangleValidLine(){
         double[] p1 = {0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 7.0, 0.0};  // RADIUS1 and RADIUS2 set to 2.0 and 7.0 respectively
         int[] p2 = {0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0}; // A_PTS  and B_PTS set to 2
         Parameters parameters = decide.new Parameters(p1, p2);
@@ -76,7 +77,7 @@ public class Lic13Test {
      * Invalid input should throws an exception. 
      */
     @Test
-    public void test_invalid_input(){
+    public void testInvalidInput(){
         double[] p1 = {0.0, 3.0, 0.0, 0.0, 0.0, 0.0, 7.0, 0.0};  // RADIUS1 and RADIUS2 set to 3.0 and 7.0 respectively
         int[] p2 = {0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0}; // A_PTS  and B_PTS set to 2
         Parameters parameters = decide.new Parameters(p1, p2);
@@ -86,15 +87,10 @@ public class Lic13Test {
         double[] y = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.0}; 
  
         // Check if program throws exception if coordinates are invalid.
-        boolean thrown_exception = false; 
-        try{
-            test_Lic13.condition(x, y, x.length, parameters);
-        }catch(IllegalArgumentException e){
-            thrown_exception = true;
-        }
-        assertTrue(thrown_exception);
+        
+        assertThrows(IllegalArgumentException.class, () -> test_Lic13.condition(x, y, x.length, parameters));
+        
     }
-
 
 
 }
