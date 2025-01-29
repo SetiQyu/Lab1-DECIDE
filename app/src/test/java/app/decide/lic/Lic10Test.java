@@ -1,7 +1,5 @@
 package app.decide.lic;
 
-
-import app.decide.Decide;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
