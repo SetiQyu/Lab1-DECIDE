@@ -4,7 +4,6 @@ import app.decide.Decide;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
-import app.decide.lic.Lic11;
 import app.decide.Decide.Parameters;;
 
 public class Lic11Test {
