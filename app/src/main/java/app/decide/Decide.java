@@ -38,21 +38,21 @@ public class Decide {
         // Step 1: Compute CMV (Conditions Met Vector)
         CMV = new boolean[15];
         // Uncomment when all LIC classes are available
-        //CMV[0] = new Lic0().condition(X, Y, NUMPOINTS, parameters);
-        //CMV[1] = new Lic1().condition(X, Y, NUMPOINTS, parameters);
-        //CMV[2] = new Lic2().condition(X, Y, NUMPOINTS, parameters);
-        //CMV[3] = new Lic3().condition(X, Y, NUMPOINTS, parameters);
-        //CMV[4] = new Lic4().condition(X, Y, NUMPOINTS, parameters);
+        CMV[0] = new Lic0().condition(X, Y, NUMPOINTS, parameters);
+        CMV[1] = new Lic1().condition(X, Y, NUMPOINTS, parameters);
+        CMV[2] = new Lic2().condition(X, Y, NUMPOINTS, parameters);
+        CMV[3] = new Lic3().condition(X, Y, NUMPOINTS, parameters);
+        CMV[4] = new Lic4().condition(X, Y, NUMPOINTS, parameters);
         CMV[5] = new Lic5().condition(X, Y, NUMPOINTS, parameters);
         CMV[6] = new Lic6().condition(X, Y, NUMPOINTS, parameters);
         CMV[7] = new Lic7().condition(X, Y, NUMPOINTS, parameters);
-        //CMV[8] = new Lic8().condition(X, Y, NUMPOINTS, parameters);
+        CMV[8] = new Lic8().condition(X, Y, NUMPOINTS, parameters);
         CMV[9] = new Lic9().condition(X, Y, NUMPOINTS, parameters);
-        //CMV[10] = new Lic10().condition(X, Y, NUMPOINTS, parameters);
-        //CMV[11] = new Lic11().condition(X, Y, NUMPOINTS, parameters);
-        //CMV[12] = new Lic12().condition(X, Y, NUMPOINTS, parameters);
-        //CMV[13] = new Lic13().condition(X, Y, NUMPOINTS, parameters);
-        //CMV[14] = new Lic14().condition(X, Y, NUMPOINTS, parameters);
+        CMV[10] = new Lic10().condition(X, Y, NUMPOINTS, parameters);
+        CMV[11] = new Lic11().condition(X, Y, NUMPOINTS, parameters);
+        CMV[12] = new Lic12().condition(X, Y, NUMPOINTS, parameters);
+        CMV[13] = new Lic13().condition(X, Y, NUMPOINTS, parameters);
+        CMV[14] = new Lic14().condition(X, Y, NUMPOINTS, parameters);
 
         // Step 2: Compute PUM using PUMGenerator
         PUM = PUMGenerator.generatePUM(LCM, CMV);
