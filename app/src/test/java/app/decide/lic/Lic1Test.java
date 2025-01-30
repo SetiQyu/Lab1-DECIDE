@@ -7,6 +7,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Lic1Test {
     /**
+     * When num_points is not the same length, inputs are invalid
+     */
+    @Test void testInvalidLength() {
+        Decide.Parameters parameters = new Decide().new Parameters(new double[8], new int[11]);
+        parameters.RADIUS1 = 2;
+        assertThrows(IllegalArgumentException.class, () -> new Lic1().condition(new double[2], new double[2], 5, parameters));
+    }
+
+    /**
      * This should be true because the smallest circle enclosing the 3 points is of radius sqrt(2)/2 > sqrt(2)/2+0.01
      */
     @Test void testTrueCondition() {
