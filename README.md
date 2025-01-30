@@ -1,5 +1,5 @@
 # Lab1-DECIDE
-* (Fictional) Gradle repo containing the Launch Interceptor Programme that decides if missiles should be launched based on input
+* Gradle repo containing the (fictional) Launch Interceptor Programme that decides if missiles should be launched based on input
 ## Requirements
 * Java 21+ compatible JDK
 ## Running
@@ -14,8 +14,9 @@ To add a feature or fix something:
 3. Work on the branch and once "done" make sure it builds (run ./gradlew clean build, if windows ./gradlew.bat clean build)
 4. Make sure the tests pass when having ran ./gradlew clean build!
 5. Push up the changes to your branch and make a PR, do not merge until review has been done
-6. Always one commit per PR, commits can be squashed though in case there are more
+6. Always one commit per PR, commits can be squashed though in case there are several
 7. Commit message should be of the form: "feature/fix/doc/refactor: #issue-number Did the thing that makes the PR relevant"
+8. If your PR fixes an issue, make sure to [link the issue that you are fixing](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
 ## Statement of contributions
 * Leo Lundberg: FUV and corresponding tests
 * Alix Peigue: LIC 5-9 and corresponding tests
@@ -23,4 +24,27 @@ To add a feature or fix something:
 * Adam Fridén Rasmussen: LIC 10-14 and corresponding tests
 * Anass Inani: PUM and corresponding tests
 * Everyone participated in code reviews to varying degrees
+## Statement of Essence
+State : Foundations Established
+In summary, we have established a common workflow with practices that
+are non-negotiable, but some parts remain not clearly formalised like
+suggestions towards workflow practices.
+- We selected the tools that form the foundation of the way-of-working :
+Git, Github, Discord.
+- Enough practices are agreed by the team to start working : Github
+workflow, communication on discord, basic code review and code
+structure
+- Non negotiable practices : current PR strategy, git
+- The gaps between the needs and the capabilities are understood : some
+members are new to Github and that needs to be respected.
+- The selected practices are integrated and in use : PR workflow and
+merge strategy.
+What are the obstacles to reach the next state? The way of working is
+missing a few key points :
+- It misses a centralized knowledge database where the practices are
+documented, currently some practices have been decided through discord,
+Github issues and they are not documented elsewhere. - There is no
+documented way to give feedback on the work and practices. - If the
+practices are documented, it will be easier to hold the members in the
+group accountable, and the team will be more consistent.
 
