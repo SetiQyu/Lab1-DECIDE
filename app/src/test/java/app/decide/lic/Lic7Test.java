@@ -4,10 +4,15 @@ import app.decide.Decide;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.awt.geom.Point2D;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Lic 7 condition :
+ * There exists at least one set of two data points separated by exactly K PTS consecutive in-
+ * tervening points that are a distance greater than the length, LENGTH1, apart. The condition
+ * is not met when NUMPOINTS < 3.
+ * 1 ≤ K PTS ≤ (NUMPOINTS − 2)
+ */
 class Lic7Test {
     static double[] x;
     static double[] y;

@@ -6,6 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Lic 8 condition :
+ * There exists at least one set of three data points separated by exactly A PTS and B PTS
+ * consecutive intervening points, respectively, that cannot be contained within or on a circle of
+ * radius RADIUS1. The condition is not met when NUMPOINTS < 5.
+ * 1 ≤ A PTS, 1 ≤ B PTS
+ * A PTS + B PTS ≤ (NUMPOINTS − 3)
+ */
 class Lic8Test {
     double[] x;
     double[] y;
