@@ -26,25 +26,21 @@ To add a feature or fix something:
 * Everyone participated in code reviews to varying degrees
 ## Statement of Essence
 State : Foundations Established
+
 In summary, we have established a common workflow with practices that
 are non-negotiable, but some parts remain not clearly formalised like
 suggestions towards workflow practices.
-- We selected the tools that form the foundation of the way-of-working :
-Git, Github, Discord.
-- Enough practices are agreed by the team to start working : Github
-workflow, communication on discord, basic code review and code
-structure
+- We selected the tools that form the foundation of the way-of-working : Git, Github, Discord.
+- Enough practices are agreed by the team to start working : Github workflow, communication on discord, basic code review and code structure
 - Non negotiable practices : current PR strategy, git
-- The gaps between the needs and the capabilities are understood : some
-members are new to Github and that needs to be respected.
-- The selected practices are integrated and in use : PR workflow and
-merge strategy.
-What are the obstacles to reach the next state? The way of working is
-missing a few key points :
+- The gaps between the needs and the capabilities are understood : some members are new to Github and that needs to be respected.
+- The selected practices are integrated and in use : PR workflow and merge strategy.
+
+What are the obstacles to reach the next state? The way of working is missing a few key points :
 - It misses a centralized knowledge database where the practices are
 documented, currently some practices have been decided through discord,
-Github issues and they are not documented elsewhere. - There is no
-documented way to give feedback on the work and practices. - If the
-practices are documented, it will be easier to hold the members in the
+Github issues and they are not documented elsewhere. 
+- There is no documented way to give feedback on the work and practices. 
+- If the practices are documented, it will be easier to hold the members in the
 group accountable, and the team will be more consistent.
 
