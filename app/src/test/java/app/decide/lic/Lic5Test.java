@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Lic 5 condition :
+ * There exists at least one set of two consecutive data points, (X[i],Y[i]) and (X[j],Y[j]), such
+ * that X[j] - X[i] < 0. (where i = j-1)
+ */
 class Lic5Test {
 
     /**
