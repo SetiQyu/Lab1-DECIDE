@@ -1,5 +1,5 @@
 # Lab1-DECIDE
-* Gradle repo containing the (fictional) Launch Interceptor Programme that takes various parameters as input and processes them through 3 distinct modules that in total decide if there should be a retaliatory missile launch or not
+* This is an implementation of a decision-making function, DECIDE(), for a (fictional) anti-ballistic missile system. The program processes radar tracking information and determines whether a missile interceptor should be launched. The decision is based on a combination of 15 predefined conditions referred to as Launch Interceptor Conditions (LICs).
 ## Requirements
 * Java 21+ compatible JDK
 ## Running
