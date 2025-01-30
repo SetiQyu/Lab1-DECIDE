@@ -67,6 +67,9 @@ public class Lic1 implements ILic{
         if(num_points < 3 || parameters.RADIUS1 < 0) {
             return false;
         }
+        if((x.length != y.length) || (num_points != y.length)){
+            throw new IllegalArgumentException("The length of the inputs do not match");
+        }
         for (int i = 0; i < num_points-2; i++) {
             if(smallestEnclosingCircle(x[i], y[i], x[i+1], y[i+1], x[i+2], y[i+2]) > parameters.RADIUS1) {
                 return true;
