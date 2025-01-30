@@ -1,5 +1,5 @@
 # Lab1-DECIDE
-* Gradle repo containing the (fictional) Launch Interceptor Programme that decides if missiles should be launched based on input
+* Gradle repo containing the (fictional) Launch Interceptor Programme that takes various parameters as input and processes them through 3 distinct modules that in total decide if there should be a retaliatory missile launch or not
 ## Requirements
 * Java 21+ compatible JDK
 ## Running
