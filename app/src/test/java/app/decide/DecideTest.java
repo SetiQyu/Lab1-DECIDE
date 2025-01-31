@@ -4,7 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * Decide condition:
+ * The final launch/no launch decision is based on the FUV. The decision to launch requires that all 
+ * elements in the FUV be true, i.e. LAUNCH should be set to true if and only if FUV[i] is true for
+ * all i, 0 ≤ i ≤ 14. For the example, LAUNCH is false because FUV[0] is false.
+ */
 class DecideTest {
     @BeforeEach
     void init() {
@@ -44,6 +49,9 @@ class DecideTest {
         Decide.parameters.DIST = 1;
     }
 
+    /**
+     * Make sure invalid NUMPOINTS will throw an error
+     */
     @Test void testInvalidLength() {
         Decide.NUMPOINTS = 5;
 

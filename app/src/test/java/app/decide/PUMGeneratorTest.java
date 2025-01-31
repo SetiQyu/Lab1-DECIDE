@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
+ * Pum condition:
  * The Conditions Met Vector (CMV) can now be used in conjunction with the Logical Connector
  * Matrix (LCM) to form the Preliminary Unlocking Matrix (PUM). The entries in the LCM represent 
  * the logical connectors to be used between pairs of LICs to determine the corresponding entry in
