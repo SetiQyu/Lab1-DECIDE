@@ -4,8 +4,14 @@ import app.decide.Decide;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
-import app.decide.Decide.Parameters;;
+import app.decide.Decide.Parameters;
 
+/**
+* There exists at least one set of two data points, (X[i],Y[i]) and (X[j],Y[j]), separated by
+* exactly G PTS consecutive intervening points, such that X[j] - X[i] < 0. (where i < j ) The
+* condition is not met when NUMPOINTS < 3.
+* 1 ≤ G PTS ≤ NUMPOINTS−2
+*/
 public class Lic11Test {
 
     private Lic11 test_Lic11;
@@ -17,25 +23,32 @@ public class Lic11Test {
         decide = new Decide();
     }
     /**
-     * Tests if the the correct pair that upholds the conditions for Lic11 is found.
+     * <b>Contract:</b> The condition function finds a pair that upholds conditions of Lic 11. <p>
+     * <b>Input: </b> G_PTS = 3, x = (3.0, 0.0, 4.0, 0.0, 3.0, 0.0, 3.0), y = (0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 3.0) <p>
+     * <b>Expected output: true </b> <p>
+     * <b>Test Purpose: Verify that the condition function returns true as x[6] < x[2] which upholds conditions for Lic 11. </b>  
      */
     @Test
-    public void finds_correct_pair(){
+    public void findsCorrectPair(){
         double[] p1 = {0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0};  // Not relevant for this LIC
         int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}; // G_PTS set to 3
         Parameters parameters = decide.new Parameters(p1, p2);
         // Data
-        double[] x = {3.0, 0.0, 4.0, 0.0, 3.0, 0.0, 3.0}; // The combination here it should find the combination 4.0(index 2) and 3.0(index 6). 
+        double[] x = {3.0, 0.0, 4.0, 0.0, 3.0, 0.0, 3.0}; // It should find the combination 4.0(index 2) and 3.0(index 6). 
         double[] y = {0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 3.0}; // Also not relevant for the LIC.
 
         assertTrue(test_Lic11.condition(x, y, x.length, parameters));
     }
     
     /**
-     * If there is no pairs that uphold the condition for Lic11 the method should return false. 
-     */
+     * <b>Contract:</b> The condition function recognizes that no pair exists that upholds conditions of Lic 11. <p>
+     * <b>Input: </b> G_PTS = 3, x = (3.0, 0.0, 3.0, 0.0, 3.0, 0.0, 3.0), y = (0.0, 0.0, 3.0, 0.0, 0.0, 0.0, 3.0) <p>
+     * <b>Expected output:</b> false <p>
+     * <b>Test Purpose:</b> Verify that if no pair from the input array x that are separated by 3 consecutive points uphold conditions x[j] - x[i] < 0 where (i > j)
+     * the function returns false.    
+     */ 
     @Test
-    public void no_pairs(){
+    public void noPairs(){
         double[] p1 = {0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0};  // Not relevant for this LIC
         int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}; // G_PTS set to 3
         Parameters parameters = decide.new Parameters(p1, p2);
@@ -47,10 +60,13 @@ public class Lic11Test {
     }
 
     /**
-     * Invalid input should throw an exception. 
+     * <b>Contract:</b> The condition function throws an exception when the lengths of the x and y points do not match. <p>
+     * <b>Input: </b> G_PTS = 3, x = (1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0), y = (1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0) <p>
+     * <b>Expected output: IllegalArgumentException </b> <p>
+     * <b>Test Purpose:</b> Verify that the condition function throws an exception when length of array x is 8 and the length of array y is 7.
      */
     @Test
-    public void test_invalid_input(){
+    public void testInvalidInput(){
         boolean thrown_exception = false;
         double[] p1 = {0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0};  // Not relevant for this LIC
         int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}; // G_PTS set to 3
