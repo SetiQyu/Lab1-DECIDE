@@ -40,7 +40,8 @@ What are the obstacles to reach the next state? The way of working is missing a 
 - It misses a centralized knowledge database where the practices are
 documented, currently some practices have been decided through discord,
 Github issues and they are not documented elsewhere. 
-- There is no documented way to give feedback on the work and practices. 
+- There is no documented way to give feedback on the work and practices.
+- Certain practices are not well-documented yet, like exact formatting for github issues and unit tests 
 - If the practices are documented, it will be easier to hold the members in the
 group accountable, and the team will be more consistent.
 
