@@ -24,10 +24,10 @@ public class Lic4 implements ILic{
         return false;
     }
 
-    private int quadrant(double x, double y) {
-        if (x >= 0 && y > 0) return 0;  // quadrant 1
-        if (x < 0 && y >= 0) return 1;  // quadrant 2
-        if (x <= 0 && y < 0) return 2;  // quadrant 3
+    public int quadrant(double x, double y) {
+        if (x >= 0 && y >= 0) return 0;  // quadrant 1
+        if (x <= 0 && y >= 0) return 1;  // quadrant 2
+        if (x <= 0 && y <= 0) return 2;  // quadrant 3
         return 3;  // quadrant 4
     }    
 }
