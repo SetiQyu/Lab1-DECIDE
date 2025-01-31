@@ -6,20 +6,30 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import app.decide.Decide.Parameters;
 
+/**
+* Lic 14 condition:  
+* There exists at least one set of three data points, separated by exactly E PTS and F PTS consecutive intervening points, respectively, that are the vertices of a triangle with area greater
+* than AREA1. In addition, there exist three data points (which can be the same or different
+* from the three data points just mentioned) separated by exactly E PTS and F PTS consecutive intervening points, respectively, that are the vertices of a triangle with area less than
+* AREA2. Both parts must be true for the LIC to be true. The condition is not met when
+* NUMPOINTS < 5.
+* 0 ≤ AREA2
+*/
 public class Lic14Test {
-    private Lic14 test_Lic14;
+    private Lic14 lic14;
     private Decide decide;
-
+    private Decide.Parameters parameters;
     @BeforeEach
     public void setUp() {
-        test_Lic14 = new Lic14();
+        lic14 = new Lic14();
         decide = new Decide();
+        parameters = new Decide().new Parameters(new double[8], new int[11]);
     }
+
     /**
-     * Tests if the check_area function calculates the correct area and does the correct comparison. 
+     * Verify that the area of 3 collinear points are 0.0 which should be greater than -1.
      */
-    @Test 
-    public void testCheckArea(){
+    @Test void testCheckArea(){
         // Test data points on line y = x
         double ax = 1.0; 
         double ay = 1.0;
@@ -27,50 +37,56 @@ public class Lic14Test {
         double by = 3.0;
         double cx = 5.0;
         double cy = 5.0;
-        // The area should be 0 which is greater than -1.
-        assertTrue(Lic14.checkArea(ax, ay, bx, by, cx, cy, -1, true));
+        // Result
+        boolean result = lic14.checkArea(ax, ay, bx, by, cx, cy, -1, true);
+        assertTrue(result, "The area formed by the points should be greater than -1.");
     }
+
     /**
-     * Tests if the method can find one triangle that upholds the conditions of Lic14.
+     * Verify that the condition function finds the triangle formed by the points (1.0, 1.0), (4.0, 1.0) and (2.0, 4.0) 
+     * that has an area of 4.5 which upholds conditions 4.5 > 4 and 4.5 < 6. 
      */
-    @Test
-    public void findsCorrectTriangle(){
-        double[] p1 = {0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 6.0}; // Area1 set to 4 and Area2 set to 6
-        int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0}; // E_PTS and F_PTS set to 2.
-        Parameters parameters = decide.new Parameters(p1, p2);
-        // The points with the correct spacing results in a triangle with area 4.5 that is within the specified range AREA1 < 4.5 < AREA2 
+    @Test void findsCorrectTriangle(){
+        parameters.AREA1 = 4.0;
+        parameters.AREA2 = 6.0;
+        parameters.E_PTS = 2;
+        parameters.F_PTS = 2;
         double[] x = {1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 2.0};
         double[] y = {1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0};
-        assertTrue(test_Lic14.condition(x, y, x.length, parameters));
+        // Result
+        boolean condition = lic14.condition(x, y, x.length, parameters);
+        assertTrue(condition, "There exists a triangle that upholds conditions of Lic14.");
     }
 
     /**
-     * Tests if the method can find two different triangles that uphold the conditions of Lic14. 
+     * Verify that the condition function finds two different triangles one formed by the points (1.0, 1.0), (4.0, 1.0) and (2.0, 4.0) 
+     * that has an area of 4.5 which upholds conditions 4.5 < 5. The other triangle formed by the points (4.0, 1.0), (2.0, 4.0), (6.0, 4.0) have an area of 6.0
+     * which is greater than 5.    
      */
-    @Test
-    public void findsTwoDifferentTriangles(){
-        double[] p1 = {0.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 5.0}; // AREA1 set to 5 and AREA2 set to 5
-        int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0}; // E_PTS and F_PTS set to 2.
-        Parameters parameters = decide.new Parameters(p1, p2);
-        // The method should find triangle (1.0, 1.0), (4.0, 1.0), (2.0, 4.0) with area= 4.5 that upholds the condition of being smaller than AREA2.
-        // The second triangle has an area greater than AREA1 is the triangle (4.0, 1.0), (2.0, 4.0), (6.0, 4.0) with area = 6.0.   
+    @Test void findsTwoDifferentTriangles(){
+        parameters.AREA1 = 5.0;
+        parameters.AREA2 = 5.0;
+        parameters.E_PTS = 2;
+        parameters.F_PTS = 2;
         double[] x = {1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 2.0, 0.0, 0.0, 6.0};
         double[] y = {1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 4.0};
-        assertTrue(test_Lic14.condition(x, y, x.length, parameters));
+        //Result
+        boolean condition = lic14.condition(x, y, x.length, parameters);
+        assertTrue(condition, "There exists two triangles that togheter uphold the conditions of Lic14.");
     }
 
-    /** 
-     * Tests if an invalid input throws an exception. 
+    /**
+     * Verify that the condition function throws an exception when length of array x is 8 and the length of array y is 7.
      */
-    @Test
-    public void testInvalidInput(){
-        double[] p1 = {0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 6.0};
-        int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0};
-        Parameters parameters = decide.new Parameters(p1, p2);
+    @Test void testInvalidInput(){
+        parameters.AREA1 = 4.0;
+        parameters.AREA2 = 6.0;
+        parameters.E_PTS = 2;
+        parameters.F_PTS = 2;
         double[] x = {1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0}; // x is shorter than y.
         double[] y = {1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0};
-        
-        assertThrows(IllegalArgumentException.class, () -> test_Lic14.condition(x, y, x.length, parameters));
+        // Result
+        assertThrows(IllegalArgumentException.class, () -> lic14.condition(x, y, x.length, parameters));
        
     }
 }

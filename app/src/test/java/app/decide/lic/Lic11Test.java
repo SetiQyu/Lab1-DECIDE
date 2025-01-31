@@ -4,61 +4,63 @@ import app.decide.Decide;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
-import app.decide.Decide.Parameters;;
+import app.decide.Decide.Parameters;
 
+/**
+* Lic 11 condition:
+* There exists at least one set of two data points, (X[i],Y[i]) and (X[j],Y[j]), separated by
+* exactly G PTS consecutive intervening points, such that X[j] - X[i] < 0. (where i < j ) The
+* condition is not met when NUMPOINTS < 3.
+* 1 ≤ G PTS ≤ NUMPOINTS−2
+*/
 public class Lic11Test {
 
-    private Lic11 test_Lic11;
+    private Lic11 lic11;
     private Decide decide;
+    private Decide.Parameters parameters;
 
     @BeforeEach 
     public void setUp() {
-        test_Lic11 = new Lic11();
+        lic11 = new Lic11();
         decide = new Decide();
+        parameters = new Decide().new Parameters(new double[8], new int[11]);
     }
     /**
-     * Tests if the the correct pair that upholds the conditions for Lic11 is found.
+     * Verify that the condition function returns true as x[6] < x[2] which upholds conditions for Lic 11.  
      */
-    @Test
-    public void finds_correct_pair(){
-        double[] p1 = {0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0};  // Not relevant for this LIC
-        int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}; // G_PTS set to 3
-        Parameters parameters = decide.new Parameters(p1, p2);
+    @Test void findsCorrectPair(){
+        parameters.G_PTS = 3;
         // Data
-        double[] x = {3.0, 0.0, 4.0, 0.0, 3.0, 0.0, 3.0}; // The combination here it should find the combination 4.0(index 2) and 3.0(index 6). 
+        double[] x = {3.0, 0.0, 4.0, 0.0, 3.0, 0.0, 3.0}; // It should find the combination 4.0(index 2) and 3.0(index 6). 
         double[] y = {0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 3.0}; // Also not relevant for the LIC.
-
-        assertTrue(test_Lic11.condition(x, y, x.length, parameters));
+        // Results
+        boolean condition = lic11.condition(x, y, x.length, parameters);
+        assertTrue(condition, "There exists one pair that upholds conditions of Lic11");
     }
     
     /**
-     * If there is no pairs that uphold the condition for Lic11 the method should return false. 
-     */
-    @Test
-    public void no_pairs(){
-        double[] p1 = {0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0};  // Not relevant for this LIC
-        int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}; // G_PTS set to 3
-        Parameters parameters = decide.new Parameters(p1, p2);
+     * Verify that if no pair from the input array x that are separated by 3 consecutive points uphold conditions x[j] - x[i] < 0 where (i > j)
+     * the function returns false.    
+     */ 
+    @Test void noPairs(){
+        parameters.G_PTS = 3;
         // Data
         double[] x = {3.0, 0.0, 3.0, 0.0, 3.0, 0.0, 3.0}; // No pair upholds the condition x[j] - x[i] < 0. 
         double[] y = {0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 3.0}; // Also not relevant for the LIC.
-
-        assertFalse(test_Lic11.condition(x, y, x.length, parameters));
+        // Result
+        boolean condition = lic11.condition(x, y, x.length, parameters);
+        assertFalse(condition, "No pairs exist that uphold conditions of Lic11.");
     }
 
     /**
-     * Invalid input should throw an exception. 
+     * Verify that the condition function throws an exception when length of array x is 8 and the length of array y is 7.
      */
-    @Test
-    public void test_invalid_input(){
-        boolean thrown_exception = false;
-        double[] p1 = {0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0};  // Not relevant for this LIC
-        int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}; // G_PTS set to 3
-        Parameters parameters = decide.new Parameters(p1, p2);
+    @Test void testInvalidInput(){
+        parameters.G_PTS = 3;
         double[] x = {1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0}; 
         double[] y = {1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0}; // y is shorter than x
-        
-        assertThrows(IllegalArgumentException.class, () -> test_Lic11.condition(x, y, x.length, parameters));
+        // Result
+        assertThrows(IllegalArgumentException.class, () -> lic11.condition(x, y, x.length, parameters));
         
     }
 }
