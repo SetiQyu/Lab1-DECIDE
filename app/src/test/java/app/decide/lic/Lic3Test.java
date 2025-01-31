@@ -5,11 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import app.decide.Decide;
 
+/**
+* There exists at least one set of three consecutive data points that are the vertices of a triangle
+* with area greater than AREA1. (0 <= AREA1)
+*/
 public class Lic3Test {
-    
 
-    @Test
-    void trueCondition_AreaExceedsThreshold() {
+    /**
+    * Should be true because at least one triangle has an area greater than AREA1 
+    */
+    @Test void trueCondition() {
         Lic3 lic = new Lic3();
         double[] x = {0.0, 2.0, 4.0};  
         double[] y = {0.0, 3.0, 0.0};  // triangle with area = 6
@@ -25,8 +30,10 @@ public class Lic3Test {
             "Should return true because at least one triangle has an area greater than AREA1.");
     }
 
-    @Test
-    void falseCondition_AllTrianglesBelowThreshold() {
+    /**
+    * Should be false because all triangles have an area <= AREA1 
+    */
+    @Test void falseCondition_AllTrianglesBelowThreshold() {
         Lic3 lic = new Lic3();
         double[] x = {0.0, 1.0, 2.0};  
         double[] y = {0.0, 0.5, 0.0};  // triangle with area = 1/2
@@ -41,5 +48,4 @@ public class Lic3Test {
         Assertions.assertFalse(condition, 
             "Should return false because all triangles have an area ≤ AREA1.");
     }
-
 }

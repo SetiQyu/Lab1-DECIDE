@@ -5,15 +5,21 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
- * Unit tests for the PUMGenerator class.
+ * The Conditions Met Vector (CMV) can now be used in conjunction with the Logical Connector
+ * Matrix (LCM) to form the Preliminary Unlocking Matrix (PUM). The entries in the LCM represent 
+ * the logical connectors to be used between pairs of LICs to determine the corresponding entry in
+ * the PUM, i.e. LCM[i,j] represents the boolean operator to be applied to CMV[i] and CMV[j].
+ * PUM[i,j] is set according to the result of this operation. If LCM[i,j] is NOTUSED, then PUM[i,j]
+ * should be set to true. If LCM[i,j] is ANDD, PUM[i,j] should be set to true only if (CMV[i] AND
+ * CMV[j]) is true. If LCM[i,j] is ORR, PUM[i,j] should be set to true if (CMV[i] OR CMV[j]) is
+ * true. (Note that the LCM is symmetric, i.e. LCM[i,j]=LCM[j,i] for all i and j.)
  */
 public class PUMGeneratorTest {
 
     /**
      * Test for a valid PUM generation with a mix of ANDD, ORR, and NOTUSED.
      */
-    @Test
-    public void testGeneratePUM_ValidInput() {
+    @Test public void testGeneratePUM_ValidInput() {
         // Define a valid 15x15 LCM 
         Decide.CONNECTORS[][] lcm = new Decide.CONNECTORS[15][15];
         for (int i = 0; i < 15; i++) {
@@ -47,8 +53,7 @@ public class PUMGeneratorTest {
     /**
      * Test for an edge case where all connectors in LCM are NOTUSED.
      */
-    @Test
-    public void testGeneratePUM_AllNOTUSED() {
+    @Test public void testGeneratePUM_AllNOTUSED() {
         // Define an LCM where all connectors are NOTUSED
         Decide.CONNECTORS[][] lcm = new Decide.CONNECTORS[15][15];
         for (int i = 0; i < 15; i++) {
