@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
+ * Lic1 condition:
  * There exists at least one set of three consecutive data points that 
  * cannot all be contained within or on a circle of radius RADIUS1. (0 <= RADIUS1)
  */

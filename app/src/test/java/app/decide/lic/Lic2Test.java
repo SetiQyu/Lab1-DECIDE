@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import app.decide.Decide;
 
 /**
+ * Lic2 condition:
  * There exists at least one set of three consecutive data points which form an angle such that: 
  * angle < (PI − EPSILON) or angle > (PI + EPSILON)
  * The second of the three consecutive points is always the vertex of the angle. If either the first
