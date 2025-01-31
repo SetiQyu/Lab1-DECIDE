@@ -23,10 +23,7 @@ public class Lic11Test {
         decide = new Decide();
     }
     /**
-     * <b>Contract:</b> The condition function finds a pair that upholds conditions of Lic 11. <p>
-     * <b>Input: </b> G_PTS = 3, x = (3.0, 0.0, 4.0, 0.0, 3.0, 0.0, 3.0), y = (0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 3.0) <p>
-     * <b>Expected output: true </b> <p>
-     * <b>Test Purpose: Verify that the condition function returns true as x[6] < x[2] which upholds conditions for Lic 11. </b>  
+     * Verify that the condition function returns true as x[6] < x[2] which upholds conditions for Lic 11.  
      */
     @Test
     public void findsCorrectPair(){
@@ -36,15 +33,13 @@ public class Lic11Test {
         // Data
         double[] x = {3.0, 0.0, 4.0, 0.0, 3.0, 0.0, 3.0}; // It should find the combination 4.0(index 2) and 3.0(index 6). 
         double[] y = {0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 3.0}; // Also not relevant for the LIC.
-
-        assertTrue(test_Lic11.condition(x, y, x.length, parameters));
+        // Results
+        boolean condition = test_Lic11.condition(x, y, x.length, parameters);
+        assertTrue(condition, "There exists one pair that upholds conditions of Lic11");
     }
     
     /**
-     * <b>Contract:</b> The condition function recognizes that no pair exists that upholds conditions of Lic 11. <p>
-     * <b>Input: </b> G_PTS = 3, x = (3.0, 0.0, 3.0, 0.0, 3.0, 0.0, 3.0), y = (0.0, 0.0, 3.0, 0.0, 0.0, 0.0, 3.0) <p>
-     * <b>Expected output:</b> false <p>
-     * <b>Test Purpose:</b> Verify that if no pair from the input array x that are separated by 3 consecutive points uphold conditions x[j] - x[i] < 0 where (i > j)
+     * Verify that if no pair from the input array x that are separated by 3 consecutive points uphold conditions x[j] - x[i] < 0 where (i > j)
      * the function returns false.    
      */ 
     @Test
@@ -55,15 +50,13 @@ public class Lic11Test {
         // Data
         double[] x = {3.0, 0.0, 3.0, 0.0, 3.0, 0.0, 3.0}; // No pair upholds the condition x[j] - x[i] < 0. 
         double[] y = {0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 3.0}; // Also not relevant for the LIC.
-
-        assertFalse(test_Lic11.condition(x, y, x.length, parameters));
+        // Result
+        boolean condition = test_Lic11.condition(x, y, x.length, parameters);
+        assertFalse(condition, "No pairs exist that uphold conditions of Lic11.");
     }
 
     /**
-     * <b>Contract:</b> The condition function throws an exception when the lengths of the x and y points do not match. <p>
-     * <b>Input: </b> G_PTS = 3, x = (1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0), y = (1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0) <p>
-     * <b>Expected output: IllegalArgumentException </b> <p>
-     * <b>Test Purpose:</b> Verify that the condition function throws an exception when length of array x is 8 and the length of array y is 7.
+     * Verify that the condition function throws an exception when length of array x is 8 and the length of array y is 7.
      */
     @Test
     public void testInvalidInput(){

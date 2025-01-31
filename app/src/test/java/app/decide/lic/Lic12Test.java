@@ -25,11 +25,8 @@ public class Lic12Test {
     }
 
     /**
-     * <b>Contract:</b> The function finds a pair that upholds conditions of Lic 12. <p>
-     * <b>Input: </b> LENGTH1 = 1.0, LENGTH2 = 4.0, K_PTS = 3, x = (1.0, 0.0, 0.0, 0.0, 3.0, 0.0), y = (1.0, 0.0, 0.0, 0.0, 1.0, 0.0) <p>
-     * <b>Expected output:</b> true <p>
-     * <b>Test Purpose:</b> Verify that the pair (1.0, 1.0) and (3.0, 1.0) that are 3 consecutive points apart and the distance between being (2.0) within the interval 1 < 2 < 4 is found
-     * and the function returns true. 
+     * The function should find the pair (1.0, 1.0) and (3.0, 1.0) that are 3 consecutive points apart and the distance between being (2.0) within the interval 1 < 2 < 4 is found
+     * and should return true. 
      */
     @Test
     public void samePairUpholdsConditions(){
@@ -39,16 +36,14 @@ public class Lic12Test {
         // Data
         double[] x = {1.0, 0.0, 0.0, 0.0, 3.0, 0.0};
         double[] y = {1.0, 0.0, 0.0, 0.0, 1.0, 0.0}; 
-
-        assertTrue(test_Lic12.condition(x, y, x.length, parameters));
+        // Result 
+        boolean condition = test_Lic12.condition(x, y, x.length, parameters);
+        assertTrue(condition, "There exists one pair that upholds condition for Lic12.");
 
     }
 
     /**
-     * <b>Contract:</b> The condition function finds two different pairs that uphold conditions of Lic 12. <p>
-     * <b>Input: </b> LENGTH1 = 3.0, LENGTH2 = 5.0, K_PTS = 3, x = (3.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 5.0), y = (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0) <p>
-     * <b>Expected output:</b> true <p>
-     * <b>Test Purpose:</b> Verify that the condition function finds the pair (3.0, 1.0) and (1.0, 1.0) that are 3 consecutive points apart and have a distance of 2.0 
+     * Verify that the condition function finds the pair (3.0, 1.0) and (1.0, 1.0) that are 3 consecutive points apart and have a distance of 2.0 
      * between them which upholds condition 2 < 5 and 
      * that the function finds the pair (1.0, 1.0) and (5.0, 1.0) that are 3 consecutive points apart and have a distance of 4 between them which upholds condition 4 > 3.  
      */
@@ -60,15 +55,13 @@ public class Lic12Test {
         // Data
         double[] x = {3.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 5.0}; 
         double[] y = {1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0};  
-
-        assertTrue(test_Lic12.condition(x, y, x.length, parameters));
+        // Result
+        boolean condition = test_Lic12.condition(x, y, x.length, parameters);
+        assertTrue(condition, "There exists two pairs that togheter uphold conditions of Lic12");
     }
 
     /**
-     * <b>Contract:</b> The condition function recognizes that there are no pairs that uphold conditions of Lic12. <p>
-     * <b>Input: </b> LENGTH1 = 3.0, LENGTH2 = 5.0, K_PTS = 3, x = (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0), y = (0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0) <p>
-     * <b>Expected output:</b> false <p>
-     * <b>Test Purpose:</b> Verify that the condition function recognizes that there are no pairs separated by 3 consecutive points that have a distance > 3 
+     * Verify that the condition function recognizes that there are no pairs separated by 3 consecutive points that have a distance > 3 
      * and the function returns false.  
      */
     @Test
@@ -79,7 +72,8 @@ public class Lic12Test {
         // Data
         double[] x = {0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0}; 
         double[] y = {0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0}; 
-
-        assertFalse(test_Lic12.condition(x, y, x.length, parameters));
+        // Result
+        boolean condition = test_Lic12.condition(x, y, x.length, parameters);
+        assertFalse(condition, "No pairs that uphold conditions of Lic12 exist.");
     }
 }

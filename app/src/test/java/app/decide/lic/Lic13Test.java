@@ -28,10 +28,7 @@ public class Lic13Test {
     }
 
     /**
-     * <b>Contract:</b> The condition function finds a triangle that upholds conditions of Lic13. <p>
-     * <b>Input: </b> RADIUS1 = 3.0, RADIUS2 = 7.0, A_PTS = 2, B_PTS = 2, x = (0.0, 0.0, 0.0, 6.0, 0.0, 0.0, 3.0), y = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.0) <p>
-     * <b>Expected output:</b> true <p>
-     * <b>Test Purpose:</b> Verify that the condition function finds the triangle formed by (0.0)-(6.0)-(3, 4) which are separated by 2 consecutive points 
+     * Verify that the condition function finds the triangle formed by (0.0)-(6.0)-(3, 4) which are separated by 2 consecutive points 
      * have a circumradius of 3.125 which is greater than 3 and smaller than 7 so the function should return true. 
      */
     @Test
@@ -39,40 +36,32 @@ public class Lic13Test {
         double[] p1 = {0.0, 3.0, 0.0, 0.0, 0.0, 0.0, 7.0, 0.0};  // RADIUS1 and RADIUS2 set to 3.0 and 7.0 respectively
         int[] p2 = {0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0}; // A_PTS  and B_PTS set to 2
         Parameters parameters = decide.new Parameters(p1, p2);
-
         // Data
         double[] x = {0.0, 0.0, 0.0, 6.0, 0.0, 0.0, 3.0}; // Points set up with distance A_PTS and B_PTS
         double[] y = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.0}; // Triangle has side lengths 6 5 5
-
-        assertTrue(test_Lic13.condition(x, y, x.length, parameters));
+        // Result
+        boolean condition = test_Lic13.condition(x, y, x.length, parameters)
+        assertTrue(condition, "There exists a triangle that upholds conditions of Lic13.");
     }
 
     /**
-     * <b>Contract:</b> The condition function recognizes that there exists no triangle or line that upholds conditions of Lic13. <p>
-     * <b>Input: </b> RADIUS1 = 3.0, RADIUS2 = 7.0, A_PTS = 2, B_PTS = 2, x = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0), y = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) <p>
-     * <b>Expected output:</b> false <p>
-     * <b>Test Purpose:</b> Verify that the condition function recognizes that the input forms no triangle or line that upholds conditions of Lic13 and returns false. 
+     * Verify that the condition function recognizes that the input forms no triangle or line that upholds conditions of Lic13 and returns false. 
      */
     @Test
     public void noTriangleNoLine(){
         double[] p1 = {0.0, 3.0, 0.0, 0.0, 0.0, 0.0, 7.0, 0.0};  // RADIUS1 and RADIUS2 set to 3.0 and 7.0 respectively
         int[] p2 = {0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0}; // A_PTS  and B_PTS set to 2
         Parameters parameters = decide.new Parameters(p1, p2);
-
         // Data
         double[] x = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; 
         double[] y = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // No triangle present or line present
-
-
-        // Check if Lic13 returns false if there exists no triangle or line that upholds the condition.
-        assertFalse(test_Lic13.condition(x, y, x.length, parameters));
+        // Result
+        boolean condition = test_Lic13.condition(x, y, x.length, parameters);
+        assertFalse(condition, "There is no triangle or line that upholds conditions of Lic13.");
     }
     
     /**
-     * <b>Contract:</b> The condition function finds a line that upholds conditions of Lic13. <p>
-     * <b>Input: </b> RADIUS1 = 3.0, RADIUS2 = 7.0, A_PTS = 2, B_PTS = 2, x = (0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 7.0, 0.0), y = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) <p>
-     * <b>Expected output:</b> true <p>
-     * <b>Test Purpose:</b> Verify that the condition function finds the points (0.0, 0.0), (5.0, 0.0), (6.0, 0.0) that are separated by 2 consecutive points 
+     * Verify that the condition function finds the points (0.0, 0.0), (5.0, 0.0), (6.0, 0.0) that are separated by 2 consecutive points 
      * form a line with length 6 
      * which is > 3 and < 7 and the function returns true.   
      */
@@ -84,29 +73,24 @@ public class Lic13Test {
         // Data
         double[] x = {0.0, 0.0, 0.0, 5.0, 0.0, 0.0, 6.0}; 
         double[] y = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // The line (0.0, 0.0) - (5.0, 0.0) - (6.0, 0.0) will fit into radius2 but not radius1. 
-
-        assertTrue(test_Lic13.condition(x, y, x.length, parameters));
+        // Result
+        boolean condition = test_Lic13.condition(x, y, x.length, parameters);
+        assertTrue(condition, "There exists a line that uphold conditions of Lic13");
     }
 
 
     /**
-     * <b>Contract:</b> The condition function throws an exception when the lengths of the x and y points do not match. <p>
-     * <b>Input: </b> RADIUS1 = 3.0, RADIUS2 = 7.0, A_PTS = 2, B_PTS = 2,x = (0.0, 0.0, 0.0, 6.0, 0.0, 0.0, 3.0, 0.0), y = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.0) <p>
-     * <b>Expected output: IllegalArgumentException </b> <p>
-     * <b>Test Purpose:</b> Verify that the condition function throws an exception when length of array x is 8 and the length of array y is 7. 
+     * Verify that the condition function throws an exception when length of array x is 8 and the length of array y is 7. 
      */
     @Test
     public void testInvalidInput(){
-        double[] p1 = {0.0, 3.0, 0.0, 0.0, 0.0, 0.0, 7.0, 0.0};  // RADIUS1 and RADIUS2 set to 3.0 and 7.0 respectively
-        int[] p2 = {0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0}; // A_PTS  and B_PTS set to 2
+        double[] p1 = {0.0, 3.0, 0.0, 0.0, 0.0, 0.0, 7.0, 0.0};
+        int[] p2 = {0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0}; 
         Parameters parameters = decide.new Parameters(p1, p2);
-
         // Data
         double[] x = {0.0, 0.0, 0.0, 6.0, 0.0, 0.0, 3.0, 0.0}; // The last x-coordinate has no corresponding y-coordinate. 
         double[] y = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.0}; 
- 
-        // Check if program throws exception if coordinates are invalid.
-        
+
         assertThrows(IllegalArgumentException.class, () -> test_Lic13.condition(x, y, x.length, parameters));
         
     }

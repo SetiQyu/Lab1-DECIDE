@@ -25,10 +25,7 @@ public class Lic14Test {
     }
 
     /**
-     * <b>Contract:</b>> The checkArea function calculates the correct area and does the correct comparison <p>
-     * <b>Input: </b> ax = 1.0 ay = 1.0, bx = 3.0, by = 3.0, cx = 5.0, cy = 5.0, area = -1, greater_than = true <p>
-     * <b>Expected output: </b> true <p>
-     * <b>Test Purpose:</b> Verify that the area of 3 collinear points are 0.0 which should be greater than -1.
+     * Verify that the area of 3 collinear points are 0.0 which should be greater than -1.
      */
     @Test 
     public void testCheckArea(){
@@ -39,14 +36,13 @@ public class Lic14Test {
         double by = 3.0;
         double cx = 5.0;
         double cy = 5.0;
-        assertTrue(Lic14.checkArea(ax, ay, bx, by, cx, cy, -1, true));
+        // Result
+        boolean result = Lic14.checkArea(ax, ay, bx, by, cx, cy, -1, true);
+        assertTrue(result, "The area formed by the points should be greater than -1.");
     }
 
     /**
-     * <b>Contract:</b>> The condition functions finds a triangle that upholds the conditions of Lic14 <p>
-     * <b>Input: </b> AREA1 = 4.0 AREA2 = 6.0, E_PTS = 2, F_PTS = 2, x = (1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 2.0), y = (1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0) <p>
-     * <b>Expected output: </b> true <p>
-     * <b>Test Purpose:</b> Verify that the condition function finds the triangle formed by the points (1.0, 1.0), (4.0, 1.0) and (2.0, 4.0) 
+     * Verify that the condition function finds the triangle formed by the points (1.0, 1.0), (4.0, 1.0) and (2.0, 4.0) 
      * that has an area of 4.5 which upholds conditions 4.5 > 4 and 4.5 < 6. 
      */
     @Test
@@ -54,17 +50,15 @@ public class Lic14Test {
         double[] p1 = {0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 6.0}; // Area1 set to 4 and Area2 set to 6
         int[] p2 = {0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0}; // E_PTS and F_PTS set to 2.
         Parameters parameters = decide.new Parameters(p1, p2);
-        // The points with the correct spacing results in a triangle with area 4.5 that is within the specified range AREA1 < 4.5 < AREA2 
         double[] x = {1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 2.0};
         double[] y = {1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0};
-        assertTrue(test_Lic14.condition(x, y, x.length, parameters));
+        // Result
+        boolean condition = test_Lic14.condition(x, y, x.length, parameters);
+        assertTrue(condition, "There exists a triangle that upholds conditions of Lic14.");
     }
 
     /**
-     * <b>Contract:</b>> The condition functions finds a triangle that upholds the conditions of Lic14 <p>
-     * <b>Input: </b> AREA1 = 5.0 AREA2 = 5.0, E_PTS = 2, F_PTS = 2, x = (1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 2.0), y = (1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0) <p>
-     * <b>Expected output: </b> true <p>
-     * <b>Test Purpose:</b> Verify that the condition function finds two different triangles one formed by the points (1.0, 1.0), (4.0, 1.0) and (2.0, 4.0) 
+     * Verify that the condition function finds two different triangles one formed by the points (1.0, 1.0), (4.0, 1.0) and (2.0, 4.0) 
      * that has an area of 4.5 which upholds conditions 4.5 < 5. The other triangle formed by the points (4.0, 1.0), (2.0, 4.0), (6.0, 4.0) have an area of 6.0
      * which is greater than 5.    
      */
@@ -75,14 +69,13 @@ public class Lic14Test {
         Parameters parameters = decide.new Parameters(p1, p2);  
         double[] x = {1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 2.0, 0.0, 0.0, 6.0};
         double[] y = {1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 4.0};
-        assertTrue(test_Lic14.condition(x, y, x.length, parameters));
+        //Result
+        boolean condition = test_Lic14.condition(x, y, x.length, parameters);
+        assertTrue(condition, "There exists two triangles that togheter uphold the conditions of Lic14.");
     }
 
     /**
-     * <b>Contract:</b> The condition function throws an exception when the lengths of the x and y points do not match. <p>
-     * <b>Input: </b> AREA1 = 5.0, AREA2 = 5.0, E_PTS = 2, F_PTS = 2 x = (1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0), y = (1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0) <p>
-     * <b>Expected output: IllegalArgumentException </b> <p>
-     * <b>Test Purpose:</b> Verify that the condition function throws an exception when length of array x is 8 and the length of array y is 7.
+     * Verify that the condition function throws an exception when length of array x is 8 and the length of array y is 7.
      */
     @Test
     public void testInvalidInput(){
