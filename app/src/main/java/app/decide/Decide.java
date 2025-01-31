@@ -1,5 +1,6 @@
 package app.decide;
 
+import java.util.Random;
 import app.decide.lic.*;
 public class Decide {
     // Enum for logical connectors
@@ -32,9 +33,34 @@ public class Decide {
     public static boolean[] FUV;
     public static Parameters parameters;
     public static boolean LAUNCH;
-
+    
+    private static void initDummyValues() {
+        double[] arbitrary_doubles = {3.5, 12.8, 7.2, 19.6, 0.4, 15.3, 9.1, 9.0};
+        int[] arbitrary_ints = {14, 2, 19, 7, 11, 5, 0, 18, 6, 13, 10};
+        X = arbitrary_doubles.clone();
+        Y = arbitrary_doubles.clone();
+        NUMPOINTS = X.length;
+        LCM = new CONNECTORS[15][15];
+        
+        //Making dummy values for LCM for testing
+        Random random = new Random();
+        for (int i = 0; i < LCM.length; i++) {
+            for (int j = 0; j < LCM[i].length; j++) {
+                LCM[i][j] = CONNECTORS.values()[random.nextInt(CONNECTORS.values().length)];
+            }
+        }       
+        PUV = new boolean[] {
+            true, false, true, true, false, 
+            false, true, false, true, true, 
+            false, true, false, true, false
+        };
+        parameters = new Decide().new Parameters(arbitrary_doubles, arbitrary_ints);
+    }
     // Compute CMV, PUM, and FUV and determine final decision based on FUV
     public static void DECIDE() {
+        // Step 0: Dummy values for testing (uncomment to test run programme)
+        //initDummyValues();
+
         // Step 1: Compute CMV (Conditions Met Vector)
         CMV = new boolean[15];
         // Uncomment when all LIC classes are available
