@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import java.util.Random;
 
 /**
+ * Fuv condition:
  * The Final Unlocking Vector (FUV) is generated from the Preliminary Unlocking Matrix. 
  * The input PUV indicates whether the corresponding LIC is to be considered as a 
  * factor in signaling interceptor launch. FUV[i] should be set to true if PUV[i] 

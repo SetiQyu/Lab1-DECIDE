@@ -4,7 +4,10 @@ import app.decide.Decide;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * There exists at least one set of three consecutive data points that 
+ * cannot all be contained within or on a circle of radius RADIUS1. (0 <= RADIUS1)
+ */
 class Lic1Test {
     /**
      * When num_points is not the same length, inputs are invalid
