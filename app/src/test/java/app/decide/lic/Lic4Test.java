@@ -9,6 +9,9 @@ public class Lic4Test {
     
 
 
+    /**
+     * Condition is true since the given points are spread across three different quadrants (I, II, and III), which is more than QUADS (2).
+     */
     @Test
     void trueCondition() {
         Lic4 lic = new Lic4();
@@ -27,6 +30,9 @@ public class Lic4Test {
             "Should return true because at least one group of Q_PTS points spans more than QUADS quadrants.");
     }
 
+     /**
+     * Condition is false since all points are in quadrant I which is less than QUADS quadrants.
+     */
     @Test
     void falseCondition() {
         Lic4 lic = new Lic4();
