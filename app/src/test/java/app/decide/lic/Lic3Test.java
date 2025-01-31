@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import app.decide.Decide;
 
 /**
+* Lic3 condition:
 * There exists at least one set of three consecutive data points that are the vertices of a triangle
 * with area greater than AREA1. (0 <= AREA1)
 */

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import app.decide.Decide;
 
 /**
+ * Lic4 condition:
  * There exists at least one set of Q PTS consecutive data points that lie in more than QUADS
  * quadrants. Where there is ambiguity as to which quadrant contains a given point, priority
  * of decision will be by quadrant number, i.e., I, II, III, IV. For example, the data point (0,0)
@@ -15,8 +16,8 @@ import app.decide.Decide;
 public class Lic4Test {
     
     /**
-     * Condition is true since the given points are spread across three different 
-     * quadrants (I, II, and III), which is more than QUADS (2).
+     * Condition should be true since the given points are spread across three different quadrants 
+     * (I, II, and III), which is more than QUADS (2).
      */
     @Test void trueCondition() {
         Lic4 lic = new Lic4();
